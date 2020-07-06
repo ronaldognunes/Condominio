@@ -1,15 +1,23 @@
 using Condominio.Domain.Core.Entidades;
+using Condominio.Domain.objetosDeValor;
 
 namespace Condominio.Domain.Entidades
 {
-    public class Despesa :Entidade
+    public class Despesa : Entidade
     {
-        public int qtd { get; private set; }
+        public Despesa(string nome, decimal valTotal, string descricao, Fornecedor fornecedor)
+        {
+            this.nome = nome;
+            this.valTotal = valTotal;
+            this.descricao = descricao;
+            Fornecedor = fornecedor;
+            AddNotifications(fornecedor);
+        }
+
         public string nome { get; private set; }
-        public decimal valor { get; private set; }
         public decimal valTotal { get; private set; }
         public string descricao { get; private set; }
-        public string Fornecedor { get; private set; }
+        public Fornecedor Fornecedor { get; private set; }
 
     }
 }

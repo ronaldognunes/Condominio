@@ -1,4 +1,4 @@
-namespace Condominio.Domain.objetosDeValor.Enuns
+namespace Condominio.Domain.objetosDeValor.Enums
 {
     public enum ESituacaoUsuario 
     {

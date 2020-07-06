@@ -1,7 +1,7 @@
 using System;
 using Condominio.Domain.Core.Entidades;
 using Condominio.Domain.objetosDeValor;
-using Condominio.Domain.objetosDeValor.Enuns;
+using Condominio.Domain.objetosDeValor.Enums;
 using Flunt.Validations;
 
 namespace Condominio.Domain.Entidades
