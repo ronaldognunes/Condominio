@@ -11,7 +11,7 @@ namespace Condominio.Domain.objetosDeValor
             this.telefone = telefone;
             this.cpf = cpf;
             this.cnpj = cnpj;
-            AddNotifications(new Contract().IsNotNullOrEmpty(nome,"nome","Nome do fornecedor não informado.")
+            AddNotifications(new Contract().Requires().IsNotNullOrEmpty(nome,"nome","Nome do fornecedor não informado.")
             .IsNotNull(telefone,"telefone","telefone não informado"));
         }
 

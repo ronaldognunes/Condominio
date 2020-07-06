@@ -22,7 +22,7 @@ namespace Condominio.Domain.Entidades
             this.Nome = nome;
             this._documentos = new List<Documento>();
 
-            AddNotifications(new Contract()
+            AddNotifications(new Contract().Requires()
                 .IsNotNullOrEmpty(titulo,"titulo","Título não informado.")
                 .IsNotNullOrEmpty(descricao,"descricao","Descrição não informada.")
                 .IsNotNull(dataOcorrencia,"dataOcorrencia", "Data da ocorrência não informada")

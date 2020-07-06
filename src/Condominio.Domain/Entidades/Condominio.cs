@@ -11,7 +11,7 @@ namespace Condominio.Domain.Entidades
             this.nome = nome;
             this.endereco = endereco;
             AddNotifications(endereco,
-            new Contract().IsNotNullOrEmpty(nome,"nome","Nome do condomínio não informado."));
+            new Contract().Requires().IsNotNullOrEmpty(nome,"nome","Nome do condomínio não informado."));
         }
 
         public string nome { get; private set; }

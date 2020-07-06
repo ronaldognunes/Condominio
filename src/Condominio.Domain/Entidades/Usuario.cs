@@ -16,7 +16,7 @@ namespace Condominio.Domain.Entidades
             this.telefone = telefone;
             this.login  = login;       
             situacao = ESituacaoUsuario.pendente;
-            AddNotifications(login, new Contract()
+            AddNotifications(login, new Contract().Requires()
              .IsNotNull(numCasa,"numCasa","Número da casa não informado.")
              .IsNotNull(dataNascimento,"dataNascimento","Data de nascimento não informado.")
              .IsNotNull(telefone,"telefone","telefone não informado.")
@@ -27,7 +27,6 @@ namespace Condominio.Domain.Entidades
         public int NumCasa { get; private set; }
         public DateTime dataNascimento { get; private set; }
         public int telefone { get; private set; }
-        public string senha { get; private set; }
         public ESituacaoUsuario situacao { get; private  set; }
         public LoginUsuario login { get; private set; }
     }

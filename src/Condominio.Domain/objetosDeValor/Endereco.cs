@@ -13,7 +13,7 @@ namespace Condominio.Domain.objetosDeValor
             this.estado = estado;
             this.cep = cep;
             this.referencia = referencia;
-            AddNotifications(new Contract()
+            AddNotifications(new Contract().Requires()
                 .IsNotNullOrEmpty(rua,"rua","Rua não informada.")
                 .IsNotNullOrEmpty(bairro,"bairro","Bairro não informado.")
                 .IsNotNullOrEmpty(cidade,"cidade","Cidade não informada.")
