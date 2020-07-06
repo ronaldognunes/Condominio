@@ -1,11 +1,12 @@
 using System;
+using Condominio.Domain.Core.Entidades;
 
 namespace Condominio.Domain.Entidades
 {
-    public class Reserva : Base
+    public class Reserva : Entidade
     {
-        public DateTime? dataAgendamento { get; set; }
-        public DateTime dataSolicitacao { get; set; }
+        public DateTime? dataAgendamento { get; private set; }
+        public DateTime dataSolicitacao { get; private set; }
         
     }
 }

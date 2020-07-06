@@ -1,13 +1,15 @@
+using Condominio.Domain.Core.Entidades;
+
 namespace Condominio.Domain.Entidades
 {
-    public class Despesa :Base
+    public class Despesa :Entidade
     {
-        public int qtd { get; set; }
-        public string nome { get; set; }
-        public decimal valor { get; set; }
-        public decimal valTotal { get; set; }
-        public string descricao { get; set; }
-        public string Fornecedor { get; set; }
+        public int qtd { get; private set; }
+        public string nome { get; private set; }
+        public decimal valor { get; private set; }
+        public decimal valTotal { get; private set; }
+        public string descricao { get; private set; }
+        public string Fornecedor { get; private set; }
 
     }
 }
