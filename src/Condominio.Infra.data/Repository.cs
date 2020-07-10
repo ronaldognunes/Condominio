@@ -19,6 +19,8 @@ namespace Condominio.Infra.data
 
         public Task<T> findById(int id)
         {
+
+            
             throw new System.NotImplementedException();
         }
 
