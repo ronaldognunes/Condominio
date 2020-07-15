@@ -6,10 +6,10 @@ namespace Condominio.Domain.Interfaces
 {
     public interface IRepository<T> where T : Entidade 
     {
-         Task<T> findById(int id);
+         Task<T> findById(string id);
          Task<List<T>> findAll();
-         void update(int id, T objeto);
-         void insert(T objeto);
-         void delete(int id);
+         Task update(string id, T objeto);
+         Task insert(T objeto);
+         Task delete(string id);
     }
 }

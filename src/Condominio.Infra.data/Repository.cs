@@ -2,36 +2,45 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Condominio.Domain.Core.Entidades;
 using Condominio.Domain.Interfaces;
+using Condominio.Infra.data.Contexto;
+using MongoDB.Driver;
 
 namespace Condominio.Infra.data
 {
-    public abstract class Repository<T> :IRepository<T> where T : Entidade
+    public abstract class Repository<T> : IRepository<T> where T : Entidade
     {
-        public void delete(int id)
+        private IMongoCollection<T> _db;
+        private readonly DbContext _context;
+
+        protected Repository()
         {
-            throw new System.NotImplementedException();
+            _context = new DbContext();
+            _db = _context.database.GetCollection<T>(typeof(T).Name);
         }
 
-        public Task<List<T>> findAll()
+        public async Task<T> findById(string id)
         {
-            throw new System.NotImplementedException();
+            return await _db.FindAsync<T>(o => o.id == id ).Result.FirstOrDefaultAsync();
         }
 
-        public Task<T> findById(int id)
+        public async Task<List<T>> findAll()
         {
-
-            
-            throw new System.NotImplementedException();
+            return await _db.FindAsync<T>(o => true).Result.ToListAsync();
         }
 
-        public void insert(T objeto)
+        public async Task update(string id, T objeto)
         {
-            throw new System.NotImplementedException();
+             await _db.ReplaceOneAsync<T>(o => o.id == id , objeto);
         }
 
-        public void update(int id, T objeto)
+        public async Task insert(T objeto)
         {
-            throw new System.NotImplementedException();
+            await _db.InsertOneAsync(objeto);
+        }
+
+        public async Task delete(string id)
+        {
+            await _db.DeleteOneAsync<T>(o => o.id == id);
         }
     }
 }
