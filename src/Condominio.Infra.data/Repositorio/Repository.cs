@@ -5,16 +5,16 @@ using Condominio.Domain.Interfaces;
 using Condominio.Infra.data.Contexto;
 using MongoDB.Driver;
 
-namespace Condominio.Infra.data
+namespace Condominio.Infra.data.Repositorio
 {
     public abstract class Repository<T> : IRepository<T> where T : Entidade
     {
         private IMongoCollection<T> _db;
         private readonly DbContext _context;
 
-        protected Repository()
+        protected Repository(DbContext context)
         {
-            _context = new DbContext();
+            _context = context;
             _db = _context.database.GetCollection<T>(typeof(T).Name);
         }
 
