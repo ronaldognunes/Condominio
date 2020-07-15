@@ -1,4 +1,4 @@
-namespace Condominio.Domain.Commands
+namespace Condominio.Domain.Commands.Usuario
 {
     public class DeletarUsuarioCommand
     {

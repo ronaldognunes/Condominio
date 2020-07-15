@@ -7,10 +7,10 @@ namespace Condominio.Infra.data.Contexto
         public IMongoClient client {get;set;}
         public IMongoDatabase database{get;set;}
 
-        public DbContext()
+        public DbContext(string stringConnection, string nomeDataBase)
         {
-            client = new MongoClient("mongodb://localhost:27017");
-            database = client.GetDatabase("condominio");
+            client = new MongoClient(stringConnection);
+            database = client.GetDatabase(nomeDataBase);
         }
 
     }

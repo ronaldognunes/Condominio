@@ -1,6 +1,6 @@
 using Condominio.Domain.objetosDeValor.Enums;
 
-namespace Condominio.Domain.Commands
+namespace Condominio.Domain.Commands.Usuario
 {
     public class AvaliarUsuarioCommad
     {
