@@ -3,7 +3,7 @@ using Condominio.Domain.Interfaces;
 
 namespace Condominio.Domain.Interfaces
 {
-    public interface IOcorrencia:IRepository<Ocorrencia>
+    public interface IOcorrenciaRepository:IRepository<Ocorrencia>
     {
          
     }

@@ -4,7 +4,7 @@ using Condominio.Infra.data.Contexto;
 
 namespace Condominio.Infra.data.Repositorio
 {
-    public class OcorrenciaRepository:Repository<Ocorrencia>, IOcorrencia
+    public class OcorrenciaRepository:Repository<Ocorrencia>, IOcorrenciaRepository
     {
         public OcorrenciaRepository(DbContext context) :base(context)
         {

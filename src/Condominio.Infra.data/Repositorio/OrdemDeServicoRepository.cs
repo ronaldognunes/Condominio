@@ -4,7 +4,7 @@ using Condominio.Infra.data.Contexto;
 
 namespace Condominio.Infra.data.Repositorio
 {
-    public class OrdemDeServicoRepository:Repository<OrdemDeServico>,IOrdemDeServico
+    public class OrdemDeServicoRepository:Repository<OrdemDeServico>,IOrdemDeServicoRepository
     {
         public OrdemDeServicoRepository(DbContext context) :base(context)
         {

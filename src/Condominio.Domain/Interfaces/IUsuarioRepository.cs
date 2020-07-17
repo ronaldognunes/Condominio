@@ -2,7 +2,7 @@ using Condominio.Domain.Entidades;
 
 namespace Condominio.Domain.Interfaces
 {
-    public interface IReserva:IRepository<Reserva>
+    public interface IUsuarioRepository:IRepository<Usuario>
     {
          
     }

@@ -5,6 +5,6 @@ namespace Condominio.Domain.Commands.Usuario
     public class AvaliarUsuarioCommad
     {
         public int idUsuario { get; set; }
-        public ESituacaoUsuario MyProperty { get; set; }         
+        public ESituacaoUsuario situacao { get; set; }         
     }
 }
