@@ -4,9 +4,9 @@ using Flunt.Validations;
 
 namespace Condominio.Domain.Entidades
 {
-    public class Condominios:Entidade
+    public class CondominioEnd:Entidade
     {
-        public Condominios(string nome, Endereco endereco)
+        public CondominioEnd(string nome, Endereco endereco)
         {
             this.nome = nome;
             this.endereco = endereco;

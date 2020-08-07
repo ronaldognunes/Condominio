@@ -2,7 +2,7 @@ using Condominio.Domain.Entidades;
 
 namespace Condominio.Domain.Interfaces
 {
-    public interface ICondominioRepository:IRepository<Condominios>
+    public interface ICondominioRepository:IRepository<CondominioEnd>
     {
          
     }
