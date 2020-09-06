@@ -1,16 +1,20 @@
 using System;
+using MediatR;
 
 namespace Condominio.Domain.Commands.Usuario
 {
-    public class CriarUsuarioCommand
+    public class CriarUsuarioCommand : UsuarioCommand, IRequest<RetornoCommands>
     {
-        public string Nome { get;  set; }
-        public int NumCasa { get;  set; }
-        public DateTime dataNascimento { get;  set; }
-        public int telefone { get;  set; }
-        public string perfil { get;  set; }
-        public string senha { get;  set; }
-        public string email { get;  set; }
+        public CriarUsuarioCommand(string Nome,int NumCasa,DateTime dataNascimento,int telefone,string perfil,string senha,string email,string situacao)
+        {
+            this.Nome = Nome;
+            this.NumCasa = NumCasa;
+            this.dataNascimento = dataNascimento;
+            this.telefone = telefone;
+            this.perfil =perfil;
+            this.senha = senha;
+            this.situacao = situacao;
+        }
         
     }
 }

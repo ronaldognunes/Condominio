@@ -1,7 +1,12 @@
+using MediatR;
+
 namespace Condominio.Domain.Commands.Usuario
 {
-    public class DeletarUsuarioCommand
+    public class DeletarUsuarioCommand :UsuarioCommand, IRequest<RetornoCommands>
     {
-        public int idUsuario { get; set; }
+        public DeletarUsuarioCommand(string idUsuario)
+        {
+            this.idUsuario = idUsuario;
+        }
     }
 }
