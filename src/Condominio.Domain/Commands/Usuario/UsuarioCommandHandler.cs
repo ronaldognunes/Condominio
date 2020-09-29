@@ -1,6 +1,8 @@
 using System.Threading;
 using System.Threading.Tasks;
+using Condominio.Domain.Entidades;
 using Condominio.Domain.Interfaces;
+using Condominio.Domain.objetosDeValor;
 using MediatR;
 
 namespace Condominio.Domain.Commands.Usuario
@@ -20,7 +22,9 @@ namespace Condominio.Domain.Commands.Usuario
         public async Task<RetornoCommands> Handle(AlterarUsuarioCommand request, CancellationToken cancellationToken)
         {
             /*fazer o mapper*/
-            var usuarioalterado = new Usuario( request.Nome, request.NumCasa, request.dataNascimento, request.telefone);
+            var email = new Email("ronaldo2385nunes@gmail.com");
+            var login = new LoginUsuario("admin","1234",email);
+            var usuarioalterado = new Usuarios( request.Nome, request.NumCasa, request.dataNascimento, request.telefone, login);
             await _repository.update(request.idUsuario, usuarioalterado);
             var retorno = new RetornoCommands();
             retorno.codRetornos = 00;
@@ -36,7 +40,9 @@ namespace Condominio.Domain.Commands.Usuario
         public async Task<RetornoCommands> Handle(CriarUsuarioCommand request, CancellationToken cancellationToken)
         {
             /*fazer o mapper*/
-            var usuarioalterado = new Usuario( request.Nome, request.NumCasa, request.dataNascimento, request.telefone);
+            var email = new Email("ronaldo2385nunes@gmail.com");
+            var login = new LoginUsuario("admin", "1234", email);
+            var usuarioalterado = new Usuarios( request.Nome, request.NumCasa, request.dataNascimento, request.telefone, login);
             await _repository.insert(usuarioalterado);
             var retorno = new RetornoCommands();
             retorno.codRetornos = 00;

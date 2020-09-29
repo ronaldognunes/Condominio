@@ -9,7 +9,7 @@ namespace Condominio.Aplication.AutoMappers
     {
         public ViewModelToDomainMapper()
         {
-            CreateMap<UsuarioViewModel,Usuario>();
+            CreateMap<UsuarioViewModel,Usuarios>();
             CreateMap<AvisosViewModel,Avisos>();
             CreateMap<CondominioViewModel,CondominioEnd>();
             CreateMap<DespesaViewModel,Despesa>();

@@ -6,9 +6,9 @@ using Flunt.Validations;
 
 namespace Condominio.Domain.Entidades
 {
-    public class Usuario : Entidade 
+    public class Usuarios : Entidade 
     {
-        public Usuario( string nome, int numCasa, DateTime dataNascimento, int telefone, LoginUsuario login)
+        public Usuarios( string nome, int numCasa, DateTime dataNascimento, int telefone, LoginUsuario login)
         {   
             this.Nome = nome;
             this.NumCasa = numCasa;
