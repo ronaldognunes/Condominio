@@ -33,7 +33,7 @@ namespace Condominio.Domain.Commands.Usuario
             throw new System.NotImplementedException();
         }
 
-        public Task<RetornoCommands> Handle(CriarUsuarioCommand request, CancellationToken cancellationToken)
+        public async Task<RetornoCommands> Handle(CriarUsuarioCommand request, CancellationToken cancellationToken)
         {
             /*fazer o mapper*/
             var usuarioalterado = new Usuario( request.Nome, request.NumCasa, request.dataNascimento, request.telefone);
@@ -44,7 +44,7 @@ namespace Condominio.Domain.Commands.Usuario
             return retorno;
         }
 
-        public Task<RetornoCommands> Handle(DeletarUsuarioCommand request, CancellationToken cancellationToken)
+        public async Task<RetornoCommands> Handle(DeletarUsuarioCommand request, CancellationToken cancellationToken)
         {
             /*fazer o mapper*/
             await _repository.delete(request.idUsuario);
