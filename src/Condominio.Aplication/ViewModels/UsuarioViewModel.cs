@@ -10,7 +10,7 @@ namespace Condominio.Aplication.ViewModels
         public int telefone { get; set; }
         public LoginViewModel login { get; set; }
         public DateTime DataNascimento { get; set; }  
-        public int situacao { get; set; }   
+        public string situacao { get; set; }   
         
     }
 }

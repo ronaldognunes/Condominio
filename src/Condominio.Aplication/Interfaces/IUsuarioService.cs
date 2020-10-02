@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Condominio.Aplication.ViewModels;
 using Condominio.Domain.Commands.Usuario;
@@ -6,10 +7,11 @@ namespace Condominio.Aplication.Interfaces
 {
     public interface IUsuarioService
     {
-         Task registrar(CriarUsuarioCommand usuario);
-         Task atualizar(AlterarUsuarioCommand usuario);
-         Task apagar(DeletarUsuarioCommand usuario);
-         Task logar (LoginViewModel usuario);
+        Task<RetornoViewModel> RegistrarAsync(UsuarioViewModel usuario);
+        Task<RetornoViewModel> AtualizarAsync(UsuarioViewModel usuario);
+        Task<RetornoViewModel> ApagarAsync(string id);
+        Task<UsuarioViewModel> LogarAsync(UsuarioViewModel usuario);
+        Task<IList<UsuarioViewModel>> RetornarUsuariosAsync();            
 
     }
 }
