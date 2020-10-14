@@ -1,3 +1,7 @@
+using AutoMapper;
+using Condominio.Infra.data.Contexto;
+using Condominio.Infra.IOC;
+using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -18,7 +22,15 @@ namespace Condominio.WebApi
 
         public void ConfigureServices(IServiceCollection services)
         {
+            //autoMapper
+            services.AddAutoMapper(typeof(Startup));
+            // injeção de dependencias
+            DependenceInjections.Injectable(services);
+            //MediatR
+            services.AddMediatR(typeof(Startup));
+            //Mongo
             
+
             services.AddControllers();
 
             services.AddMvc();
@@ -33,6 +45,8 @@ namespace Condominio.WebApi
 
                 });
             });
+
+            
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

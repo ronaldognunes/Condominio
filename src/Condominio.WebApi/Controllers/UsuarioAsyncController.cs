@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Condominio.Aplication.Interfaces;
+using Condominio.Aplication.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -12,11 +14,17 @@ namespace Condominio.WebApi.Controllers
     [ApiController]
     public class UsuarioAsyncController : ControllerBase
     {
+        private readonly IUsuarioService _service;
         // GET: api/<UsuarioController>
-        [HttpGet]
-        public IEnumerable<string> Get()
+        public UsuarioAsyncController(IUsuarioService service)
         {
-            return new string[] { "value1", "value2" };
+            _service = service;
+
+        }
+        [HttpGet]
+        public async Task<IEnumerable<UsuarioViewModel>> UsuariosAsync()
+        {
+            return await _service.RetornarUsuariosAsync();
         }
 
         // GET api/<UsuarioController>/5
