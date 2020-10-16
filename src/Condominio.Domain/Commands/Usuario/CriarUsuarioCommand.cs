@@ -9,11 +9,11 @@ namespace Condominio.Domain.Commands.Usuario
         {
             this.Nome = Nome;
             this.NumCasa = NumCasa;
-            this.dataNascimento = dataNascimento;
-            this.telefone = telefone;
-            this.perfil =perfil;
-            this.senha = senha;
-            this.situacao = situacao;
+            this.DataNascimento = dataNascimento;
+            this.Telefone = telefone;
+            this.Perfil =perfil;
+            this.Senha = senha;
+            this.Situacao = situacao;
         }
         
     }

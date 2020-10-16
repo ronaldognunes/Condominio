@@ -1,6 +1,8 @@
 using AutoMapper;
 using Condominio.Aplication.Interfaces;
 using Condominio.Aplication.Services;
+using Condominio.Domain.Commands;
+using Condominio.Domain.Commands.Usuario;
 using Condominio.Domain.Interfaces;
 using Condominio.Infra.data.ConfigurationDb;
 using Condominio.Infra.data.Contexto;
@@ -14,6 +16,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
+using System;
 
 namespace Condominio.WebApi
 {
@@ -29,10 +32,11 @@ namespace Condominio.WebApi
         public void ConfigureServices(IServiceCollection services)
         {
             //autoMapper
+
             services.AddAutoMapper(typeof(Startup));
             // injeção de dependencias
             //DependenceInjections.Injectable(services);
-            //MediatR
+            
 
             //service
             services.AddScoped<IUsuarioService, UsuarioService>();
@@ -46,8 +50,13 @@ namespace Condominio.WebApi
             services.AddScoped<IDespesaRepository, DespesaRepository>();
             services.AddScoped<ICondominioRepository, CondominiosRepository>();
             services.AddScoped<IAvisosRepository, AvisoRepository>();
-
+            //MediatR
+            var assembly = AppDomain.CurrentDomain.Load("Condominio.Domain");
             services.AddMediatR(typeof(Startup));
+            services.AddScoped<IRequestHandler<AlterarUsuarioCommand, RetornoCommands>, UsuarioCommandHandler>();
+            services.AddScoped<IRequestHandler<AvaliarUsuarioCommad, RetornoCommands>, UsuarioCommandHandler>();
+            services.AddScoped<IRequestHandler<CriarUsuarioCommand, RetornoCommands>, UsuarioCommandHandler>();
+            services.AddScoped<IRequestHandler<DeletarUsuarioCommand, RetornoCommands>, UsuarioCommandHandler>();
             //Mongo
             services.Configure<ConfigurationDb>(Configuration.GetSection(nameof(ConfigurationDb)));
             services.AddSingleton<IConfigurationDb>( option => option.GetRequiredService<IOptions<ConfigurationDb>>().Value);

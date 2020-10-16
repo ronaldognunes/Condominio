@@ -6,7 +6,6 @@ using Condominio.Domain.Interfaces;
 using MediatR;
 using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Condominio.Aplication.Services
@@ -24,31 +23,38 @@ namespace Condominio.Aplication.Services
             _repository = repository;
         }
         public async Task<RetornoViewModel> ApagarAsync(string id)
-        {
-            /*criar mapper*/
-            var command = new DeletarUsuarioCommand(id);
-            var retornocommand = await _handler.Send(command);
-            var retorno = new RetornoViewModel { MsgRetorno = retornocommand.mensagens};
+        {            
+            RetornoViewModel retorno;
+            try
+            {
+                var command = new DeletarUsuarioCommand(id);
+                var retornocommand = await _handler.Send(command);
+                retorno = new RetornoViewModel { MsgRetorno = retornocommand.mensagens };
+            }
+            catch(Exception e)
+            {
+                 retorno = new RetornoViewModel { MsgRetorno = e.Message.ToString() };
+            }
+            
             return retorno;
         }
 
         public async Task<RetornoViewModel> AtualizarAsync(UsuarioViewModel usuario)
         {
-            /*criar mapper*/
-            var command = new AlterarUsuarioCommand(usuario.id,usuario.nome,usuario.numCasa,usuario.DataNascimento,usuario.telefone,usuario.login.pefil,usuario.login.senha,usuario.login.email,usuario.situacao);
+            var command = _mapper.Map<UsuarioViewModel,AlterarUsuarioCommand>(usuario);
             var retornocommand = await _handler.Send(command);
             var retorno = new RetornoViewModel { MsgRetorno = retornocommand.mensagens };
             return retorno;
         }
 
-        public async Task<UsuarioViewModel> LogarAsync(UsuarioViewModel usuario)
+        public async Task<UsuarioViewModel> LogarAsync(string  id)
         {
-            var retornorepositorio = await _repository.findById(usuario.id);
+            var retornorepositorio = await _repository.findById(id);
             var retorno = new UsuarioViewModel
             {
-                id = retornorepositorio.id,
-                nome = retornorepositorio.Nome,
-                DataNascimento = retornorepositorio.dataNascimento
+                Id = retornorepositorio.id,
+                Nome = retornorepositorio.Nome,
+                DataNascimento = retornorepositorio.DataNascimento
             };
             return retorno;
         }
@@ -56,7 +62,7 @@ namespace Condominio.Aplication.Services
         public async Task<RetornoViewModel> RegistrarAsync(UsuarioViewModel usuario)
         {
             /*criar mapper*/
-            var command = new CriarUsuarioCommand( usuario.nome, usuario.numCasa, usuario.DataNascimento, usuario.telefone, usuario.login.pefil, usuario.login.senha, usuario.login.email, usuario.situacao);
+            var command = _mapper.Map<UsuarioViewModel,CriarUsuarioCommand>(usuario);
             var retornocommand = await _handler.Send(command);
             var retorno = new RetornoViewModel { MsgRetorno = retornocommand.mensagens };
             return retorno;
@@ -70,9 +76,9 @@ namespace Condominio.Aplication.Services
             {
                 var retorno = new UsuarioViewModel
                 {
-                    id = item.id,
-                    nome = item.Nome,
-                    DataNascimento = item.dataNascimento
+                    Id = item.id,
+                    Nome = item.Nome,
+                    DataNascimento = item.DataNascimento
                 };
                 lista.Add(retorno);
             }

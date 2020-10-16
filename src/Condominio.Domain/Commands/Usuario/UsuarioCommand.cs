@@ -7,18 +7,18 @@ namespace Condominio.Domain.Commands.Usuario
 {
     public class UsuarioCommand :Notifiable 
     {
-        public string idUsuario { get; set; }
+        public string Id { get; set; }
         public string Nome { get;  set; }
         public int NumCasa { get;  set; }
-        public DateTime dataNascimento { get;  set; }
-        public int telefone { get;  set; }
-        public string perfil { get;  set; }
-        public string senha { get;  set; }
-        public string email { get;  set; }
-        public string situacao { get; set; }         
+        public DateTime DataNascimento { get;  set; }
+        public int Telefone { get;  set; }
+        public string Perfil { get;  set; }
+        public string Senha { get;  set; }
+        public string Email { get;  set; }
+        public string Situacao { get; set; }         
 
         public void ValidaAlterarUsuario(){
-            AddNotifications( new Contract().Requires().IsNull(idUsuario,"idUsuario","Usuario é obrigatório"));             
+            AddNotifications( new Contract().Requires().IsNull(Id,"idUsuario","Usuario é obrigatório"));             
         }
     }
 }

@@ -4,13 +4,15 @@ namespace Condominio.Aplication.ViewModels
 {
     public class UsuarioViewModel
     {
-        public string id { get; set; }
-        public string nome { get; set; }
-        public int numCasa { get; set; }
-        public int telefone { get; set; }
-        public LoginViewModel login { get; set; }
+        public string Id { get; set; }
+        public string Nome { get; set; }
+        public int NumCasa { get; set; }
+        public int Telefone { get; set; }
+        public string Email { get; set; }
+        public string Senha { get; set; }
+        public string Perfil { get; set; }
         public DateTime DataNascimento { get; set; }  
-        public string situacao { get; set; }   
+        public string Situacao { get; set; }   
         
     }
 }

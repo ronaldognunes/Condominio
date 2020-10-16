@@ -21,11 +21,18 @@ namespace Condominio.Domain.Commands.Usuario
         }
         public async Task<RetornoCommands> Handle(AlterarUsuarioCommand request, CancellationToken cancellationToken)
         {
-            /*fazer o mapper*/
-            var email = new Email("ronaldo2385nunes@gmail.com");
-            var login = new LoginUsuario("admin","1234",email);
-            var usuarioalterado = new Usuarios( request.Nome, request.NumCasa, request.dataNascimento, request.telefone, login);
-            await _repository.update(request.idUsuario, usuarioalterado);
+            /*fazer o mapper*/            
+            var usuario= new Usuarios( 
+                request.Nome, 
+                request.NumCasa, 
+                request.DataNascimento, 
+                request.Telefone,  
+                new LoginUsuario(request.Perfil, request.Perfil, new Email(request.Email)));
+
+            if (usuario.Invalid)
+                return new RetornoCommands { codRetornos = 01, mensagens = "Dados do Usuário invalido"};
+
+            await _repository.update(request.Id, usuario);
             var retorno = new RetornoCommands();
             retorno.codRetornos = 00;
             retorno.mensagens = "Registro atualizado com sucesso!";
@@ -42,7 +49,7 @@ namespace Condominio.Domain.Commands.Usuario
             /*fazer o mapper*/
             var email = new Email("ronaldo2385nunes@gmail.com");
             var login = new LoginUsuario("admin", "1234", email);
-            var usuarioalterado = new Usuarios( request.Nome, request.NumCasa, request.dataNascimento, request.telefone, login);
+            var usuarioalterado = new Usuarios( request.Nome, request.NumCasa, request.DataNascimento, request.Telefone, login);
             await _repository.insert(usuarioalterado);
             var retorno = new RetornoCommands();
             retorno.codRetornos = 00;
@@ -53,7 +60,7 @@ namespace Condominio.Domain.Commands.Usuario
         public async Task<RetornoCommands> Handle(DeletarUsuarioCommand request, CancellationToken cancellationToken)
         {
             /*fazer o mapper*/
-            await _repository.delete(request.idUsuario);
+            await _repository.delete(request.Id);
             var retorno = new RetornoCommands();
             retorno.codRetornos = 00;
             retorno.mensagens = "Registro apagado com sucesso!";

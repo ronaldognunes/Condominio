@@ -1,5 +1,6 @@
 using AutoMapper;
 using Condominio.Aplication.ViewModels;
+using Condominio.Domain.Commands.Usuario;
 using Condominio.Domain.Entidades;
 using Condominio.Domain.objetosDeValor;
 
@@ -21,6 +22,13 @@ namespace Condominio.Aplication.AutoMappers
             CreateMap<OrdemServicoViewModel,OrdemDeServico>();
             CreateMap<PrestadorServicoViewModel,PrestadorServico>();
             CreateMap<ReservaViewModel,Reserva>();
+            CreateMap<UsuarioViewModel, AlterarUsuarioCommand>()
+                .ConvertUsing( c => new AlterarUsuarioCommand(c.Id,c.Nome,c.NumCasa,c.DataNascimento,c.Telefone,c.Perfil,c.Senha,c.Email,c.Situacao));
+            CreateMap<UsuarioViewModel, AvaliarUsuarioCommad>()
+                .ConstructUsing(c => new AvaliarUsuarioCommad(c.Id, c.Situacao));
+            CreateMap<UsuarioViewModel, CriarUsuarioCommand>()
+                .ConstructUsing(c => new CriarUsuarioCommand(c.Nome,c.NumCasa,c.DataNascimento,c.Telefone,c.Perfil,c.Senha,c.Email,c.Situacao));
+
         }
     }
 }

@@ -8,9 +8,9 @@ namespace Condominio.Domain.objetosDeValor
     {
         public Email(string edEmail)
         {
-            this.edEmail = edEmail;
+            this.EdEmail = edEmail;
             AddNotifications(new Contract().Requires().IsEmailOrEmpty(edEmail,"edEmail","Obrigatório informar e-mail valido"));
         }
-        public string edEmail { get; set; }
+        public string EdEmail { get; set; }
     }
 }

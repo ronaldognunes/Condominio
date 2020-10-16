@@ -5,15 +5,16 @@ namespace Condominio.Domain.Commands.Usuario
 {
     public class AlterarUsuarioCommand : UsuarioCommand, IRequest<RetornoCommands>
     {
-        public AlterarUsuarioCommand(string idUsuario ,string Nome,int NumCasa,DateTime dataNascimento,int telefone,string perfil,string senha,string email,string situacao)
+        public AlterarUsuarioCommand(string Id, string Nome,int NumCasa,DateTime dataNascimento,int telefone,string perfil,string senha,string email,string situacao)
         {
+            this.Id = Id;
             this.Nome = Nome;
             this.NumCasa = NumCasa;
-            this.dataNascimento = dataNascimento;
-            this.telefone = telefone;
-            this.perfil =perfil;
-            this.senha = senha;
-            this.situacao = situacao;
+            this.DataNascimento = dataNascimento;
+            this.Telefone = telefone;
+            this.Perfil =perfil;
+            this.Senha = senha;
+            this.Situacao = situacao;
         }
     }
 }

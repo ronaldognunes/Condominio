@@ -10,7 +10,7 @@ namespace Condominio.Aplication.Interfaces
         Task<RetornoViewModel> RegistrarAsync(UsuarioViewModel usuario);
         Task<RetornoViewModel> AtualizarAsync(UsuarioViewModel usuario);
         Task<RetornoViewModel> ApagarAsync(string id);
-        Task<UsuarioViewModel> LogarAsync(UsuarioViewModel usuario);
+        Task<UsuarioViewModel> LogarAsync(string usuario);
         Task<IList<UsuarioViewModel>> RetornarUsuariosAsync();            
 
     }

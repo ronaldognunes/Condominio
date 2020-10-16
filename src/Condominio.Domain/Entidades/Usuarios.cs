@@ -12,10 +12,10 @@ namespace Condominio.Domain.Entidades
         {   
             this.Nome = nome;
             this.NumCasa = numCasa;
-            this.dataNascimento = dataNascimento;
-            this.telefone = telefone;
-            this.login  = login;       
-            situacao = ESituacaoUsuario.pendente;
+            this.DataNascimento = dataNascimento;
+            this.Telefone = telefone;
+            this.Login  = login;       
+            Situacao = ESituacaoUsuario.pendente;
             AddNotifications(login, new Contract().Requires()
              .IsNotNull(numCasa,"numCasa","Número da casa não informado.")
              .IsNotNull(dataNascimento,"dataNascimento","Data de nascimento não informado.")
@@ -25,9 +25,9 @@ namespace Condominio.Domain.Entidades
         }
         public string Nome { get; private set; }
         public int NumCasa { get; private set; }
-        public DateTime dataNascimento { get; private set; }
-        public int telefone { get; private set; }
-        public ESituacaoUsuario situacao { get; private  set; }
-        public LoginUsuario login { get; private set; }
+        public DateTime DataNascimento { get; private set; }
+        public int Telefone { get; private set; }
+        public ESituacaoUsuario Situacao { get; private  set; }
+        public LoginUsuario Login { get; private set; }
     }
 }

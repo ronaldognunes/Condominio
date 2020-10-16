@@ -7,8 +7,8 @@ namespace Condominio.Domain.Commands.Usuario
     {        
        public AvaliarUsuarioCommad(string id, string situacao)
        {
-           this.idUsuario = id;
-           this.situacao = situacao;
+           this.Id = id;
+           this.Situacao = situacao;
        }        
     }
 }

@@ -6,7 +6,7 @@ namespace Condominio.Domain.Commands.Usuario
     {
         public DeletarUsuarioCommand(string idUsuario)
         {
-            this.idUsuario = idUsuario;
+            this.Id = idUsuario;
         }
     }
 }
