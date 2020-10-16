@@ -1,3 +1,4 @@
+using Condominio.Infra.data.ConfigurationDb;
 using MongoDB.Driver;
 
 namespace Condominio.Infra.data.Contexto
@@ -7,10 +8,10 @@ namespace Condominio.Infra.data.Contexto
         public IMongoClient client {get;set;}
         public IMongoDatabase database{get;set;}
 
-        public DbContext(string stringConnection, string nomeDataBase)
+        public DbContext(IConfigurationDb settings)
         {
-            client = new MongoClient(stringConnection);
-            database = client.GetDatabase(nomeDataBase);
+            client = new MongoClient(settings.ConnectionString);
+            database = client.GetDatabase(settings.DataBaseName);
         }
 
     }

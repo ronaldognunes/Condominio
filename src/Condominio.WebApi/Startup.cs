@@ -1,5 +1,10 @@
 using AutoMapper;
+using Condominio.Aplication.Interfaces;
+using Condominio.Aplication.Services;
+using Condominio.Domain.Interfaces;
+using Condominio.Infra.data.ConfigurationDb;
 using Condominio.Infra.data.Contexto;
+using Condominio.Infra.data.Repositorio;
 using Condominio.Infra.IOC;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
@@ -7,6 +12,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
 
 namespace Condominio.WebApi
@@ -25,11 +31,28 @@ namespace Condominio.WebApi
             //autoMapper
             services.AddAutoMapper(typeof(Startup));
             // injeção de dependencias
-            DependenceInjections.Injectable(services);
+            //DependenceInjections.Injectable(services);
             //MediatR
+
+            //service
+            services.AddScoped<IUsuarioService, UsuarioService>();
+
+            //repositório
+            //services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+            services.AddScoped<IUsuarioRepository, UsuarioRepository>();
+            services.AddScoped<IReservaRepository, ReservaRepository>();
+            services.AddScoped<IOrdemDeServicoRepository, OrdemDeServicoRepository>();
+            services.AddScoped<IOcorrenciaRepository, OcorrenciaRepository>();
+            services.AddScoped<IDespesaRepository, DespesaRepository>();
+            services.AddScoped<ICondominioRepository, CondominiosRepository>();
+            services.AddScoped<IAvisosRepository, AvisoRepository>();
+
             services.AddMediatR(typeof(Startup));
             //Mongo
-            
+            services.Configure<ConfigurationDb>(Configuration.GetSection(nameof(ConfigurationDb)));
+            services.AddSingleton<IConfigurationDb>( option => option.GetRequiredService<IOptions<ConfigurationDb>>().Value);
+            services.AddSingleton<DbContext>();
+
 
             services.AddControllers();
 
