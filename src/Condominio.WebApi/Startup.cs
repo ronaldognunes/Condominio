@@ -20,6 +20,7 @@ using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using System;
+using System.Collections.Generic;
 using System.Text;
 
 namespace Condominio.WebApi
@@ -93,10 +94,24 @@ namespace Condominio.WebApi
                         In = ParameterLocation.Header,
                         Description = "Autenticação baseada em JWT token.",
                         Name = "Authorization",
-                        Type = SecuritySchemeType.Http
+                        Type = SecuritySchemeType.ApiKey
                     }
                         
                 );
+
+                c.AddSecurityRequirement( new OpenApiSecurityRequirement
+                {
+                  {
+                    new OpenApiSecurityScheme
+                    {
+                        Reference = new OpenApiReference
+                        {
+                            Id = "Bearer",
+                            Type = ReferenceType.SecurityScheme
+                        }
+                    },new List<string>()
+                  }
+                });
             });
 
             //jwt
@@ -153,7 +168,7 @@ namespace Condominio.WebApi
 
             app.UseSwaggerUI(c => {
 
-                c.SwaggerEndpoint("/swagger/api/swagger.json", "My API V1");
+                c.SwaggerEndpoint("/swagger/api/swagger.json", "CONDOMÍNIO - API V1");
             });
         }
     }
