@@ -1,4 +1,5 @@
 using AutoMapper;
+using Condominio.Aplication.AutoMappers;
 using Condominio.Aplication.Interfaces;
 using Condominio.Aplication.Services;
 using Condominio.Domain.Commands;
@@ -31,9 +32,8 @@ namespace Condominio.WebApi
 
         public void ConfigureServices(IServiceCollection services)
         {
-            //autoMapper
+            
 
-            services.AddAutoMapper(typeof(Startup));
             // injeção de dependencias
             //DependenceInjections.Injectable(services);
             
@@ -64,6 +64,14 @@ namespace Condominio.WebApi
 
 
             services.AddControllers();
+            //mapper
+            var configMap = new MapperConfiguration(cfs => {
+                cfs.AddProfile(new DomainToViewModelMapper());
+                cfs.AddProfile(new ViewModelToDomainMapper());            
+            });
+
+            IMapper mapper = configMap.CreateMapper();
+            services.AddSingleton(mapper);
 
             services.AddMvc();
             services.AddSwaggerGen(c =>

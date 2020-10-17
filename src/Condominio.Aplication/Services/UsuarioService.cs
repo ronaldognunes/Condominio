@@ -42,6 +42,7 @@ namespace Condominio.Aplication.Services
         public async Task<RetornoViewModel> AtualizarAsync(UsuarioViewModel usuario)
         {
             var command = _mapper.Map<UsuarioViewModel,AlterarUsuarioCommand>(usuario);
+            //var command = new AlterarUsuarioCommand(usuario.Id, usuario.Nome, usuario.NumCasa, usuario.DataNascimento, usuario.Telefone, usuario.Perfil, usuario.Senha, usuario.Email, usuario.Situacao);
             var retornocommand = await _handler.Send(command);
             var retorno = new RetornoViewModel { MsgRetorno = retornocommand.mensagens };
             return retorno;
@@ -49,12 +50,17 @@ namespace Condominio.Aplication.Services
 
         public async Task<UsuarioViewModel> LogarAsync(string  id)
         {
-            var retornorepositorio = await _repository.findById(id);
+            var item = await _repository.findById(id);
             var retorno = new UsuarioViewModel
             {
-                Id = retornorepositorio.id,
-                Nome = retornorepositorio.Nome,
-                DataNascimento = retornorepositorio.DataNascimento
+                Id = item.id,
+                Nome = item.Nome,
+                DataNascimento = item.DataNascimento,
+                Telefone = item.Telefone,
+                Email = item.Login.Email.EdEmail,
+                Senha = item.Login.Senha,
+                Perfil = item.Login.Perfil,
+                Situacao = item.Situacao.ToString()
             };
             return retorno;
         }
@@ -62,7 +68,8 @@ namespace Condominio.Aplication.Services
         public async Task<RetornoViewModel> RegistrarAsync(UsuarioViewModel usuario)
         {
             /*criar mapper*/
-            var command = _mapper.Map<UsuarioViewModel,CriarUsuarioCommand>(usuario);
+            var command = _mapper.Map<CriarUsuarioCommand>(usuario);
+            //var command = new CriarUsuarioCommand(usuario.Nome, usuario.NumCasa, usuario.DataNascimento, usuario.Telefone, usuario.Perfil, usuario.Senha,usuario.Email ,usuario.Situacao);
             var retornocommand = await _handler.Send(command);
             var retorno = new RetornoViewModel { MsgRetorno = retornocommand.mensagens };
             return retorno;
@@ -78,7 +85,12 @@ namespace Condominio.Aplication.Services
                 {
                     Id = item.id,
                     Nome = item.Nome,
-                    DataNascimento = item.DataNascimento
+                    DataNascimento = item.DataNascimento,                    
+                    Telefone = item.Telefone,
+                    Email = item.Login.Email.EdEmail,
+                    Senha = item.Login.Senha,
+                    Perfil = item.Login.Perfil,
+                    Situacao = item.Situacao.ToString()
                 };
                 lista.Add(retorno);
             }

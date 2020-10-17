@@ -11,7 +11,7 @@ namespace Condominio.Domain.objetosDeValor
             this.Senha = senha;
             this.Email = email;
                         
-            AddNotifications(email, new Contract().Requires().HasMinLen(senha,6,"senha","Senha deve possui no mínimo 6 dígitos."));
+            AddNotifications(Email);
 
         }
         public string Perfil { get; private set; }

@@ -16,11 +16,11 @@ namespace Condominio.Domain.Entidades
             this.Telefone = telefone;
             this.Login  = login;       
             Situacao = ESituacaoUsuario.pendente;
-            AddNotifications(login, new Contract().Requires()
-             .IsNotNull(numCasa,"numCasa","Número da casa não informado.")
-             .IsNotNull(dataNascimento,"dataNascimento","Data de nascimento não informado.")
-             .IsNotNull(telefone,"telefone","telefone não informado.")
-             .IsNullOrEmpty(nome,"nome","Nome não informado")
+            AddNotifications(Login, new Contract().Requires()
+             .IsNotNull(NumCasa, "NumCasa", "Número da casa não informado.")
+             .IsNotNull(DataNascimento, "DataNascimento", "Data de nascimento não informado.")
+             .IsNotNull(Telefone, "Telefone", "telefone não informado.")
+             .IsNotNull(Nome, "Nome","Nome não informado")
              );
         }
         public string Nome { get; private set; }
