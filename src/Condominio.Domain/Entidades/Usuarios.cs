@@ -23,6 +23,22 @@ namespace Condominio.Domain.Entidades
              .IsNotNull(Nome, "Nome","Nome não informado")
              );
         }
+        public Usuarios(string id,string nome, int numCasa, DateTime dataNascimento, int telefone, LoginUsuario login)
+        {
+            this.id = id;
+            this.Nome = nome;
+            this.NumCasa = numCasa;
+            this.DataNascimento = dataNascimento;
+            this.Telefone = telefone;
+            this.Login = login;
+            Situacao = ESituacaoUsuario.pendente;
+            AddNotifications(Login, new Contract().Requires()
+             .IsNotNull(NumCasa, "NumCasa", "Número da casa não informado.")
+             .IsNotNull(DataNascimento, "DataNascimento", "Data de nascimento não informado.")
+             .IsNotNull(Telefone, "Telefone", "telefone não informado.")
+             .IsNotNull(Nome, "Nome", "Nome não informado")
+             );
+        }
         public string Nome { get; private set; }
         public int NumCasa { get; private set; }
         public DateTime DataNascimento { get; private set; }

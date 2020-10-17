@@ -68,8 +68,7 @@ namespace Condominio.Aplication.Services
         public async Task<RetornoViewModel> RegistrarAsync(UsuarioViewModel usuario)
         {
             /*criar mapper*/
-            var command = _mapper.Map<CriarUsuarioCommand>(usuario);
-            //var command = new CriarUsuarioCommand(usuario.Nome, usuario.NumCasa, usuario.DataNascimento, usuario.Telefone, usuario.Perfil, usuario.Senha,usuario.Email ,usuario.Situacao);
+            var command = _mapper.Map<CriarUsuarioCommand>(usuario);            
             var retornocommand = await _handler.Send(command);
             var retorno = new RetornoViewModel { MsgRetorno = retornocommand.mensagens };
             return retorno;

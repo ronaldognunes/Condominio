@@ -10,14 +10,17 @@ using Condominio.Infra.data.Contexto;
 using Condominio.Infra.data.Repositorio;
 using Condominio.Infra.IOC;
 using MediatR;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Options;
+using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using System;
+using System.Text;
 
 namespace Condominio.WebApi
 {
@@ -62,7 +65,7 @@ namespace Condominio.WebApi
             services.AddSingleton<IConfigurationDb>( option => option.GetRequiredService<IOptions<ConfigurationDb>>().Value);
             services.AddSingleton<DbContext>();
 
-
+            services.AddCors();
             services.AddControllers();
             //mapper
             var configMap = new MapperConfiguration(cfs => {
@@ -81,12 +84,41 @@ namespace Condominio.WebApi
                     Version ="1.0",
                     Title = "Condominio",
                     Description = "Api para gerencia de condomínio",
-                    
-
                 });
+
+                c.AddSecurityDefinition(
+                    "Bearer",
+                    new OpenApiSecurityScheme
+                    {
+                        In = ParameterLocation.Header,
+                        Description = "Autenticação baseada em JWT token.",
+                        Name = "Authorization",
+                        Type = SecuritySchemeType.Http
+                    }
+                        
+                );
             });
 
-            
+            //jwt
+            var Key = Encoding.ASCII.GetBytes("@$WWEOISD(*)*&#¨&¨@#&@");
+            services.AddAuthentication(x => {
+                x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+
+            }).AddJwtBearer(x =>
+            {
+                x.RequireHttpsMetadata = false;
+                x.SaveToken = true;
+                x.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuerSigningKey = true,
+                    IssuerSigningKey = new SymmetricSecurityKey(Key),
+                    ValidateIssuer = false,
+                    ValidateAudience = false
+                };
+            });
+
+
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -102,7 +134,15 @@ namespace Condominio.WebApi
 
             app.UseRouting();
 
+            app.UseCors( x => 
+                x.AllowAnyOrigin()
+                 .AllowAnyMethod()
+                 .AllowAnyHeader()               
+            );
+
+            app.UseAuthentication();
             app.UseAuthorization();
+
 
             app.UseEndpoints(endpoints =>
             {

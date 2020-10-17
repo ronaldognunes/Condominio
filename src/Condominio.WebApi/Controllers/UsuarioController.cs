@@ -2,8 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using Condominio.Aplication.Interfaces;
 using Condominio.Aplication.ViewModels;
+using Condominio.Domain.Entidades;
+using Condominio.WebApi.JWT;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using MongoDB.Driver;
 
@@ -16,14 +20,16 @@ namespace Condominio.WebApi.Controllers
     public class UsuarioController : ControllerBase
     {
         private readonly IUsuarioService _service;
+        private readonly IMapper _mapper;
         // GET: api/<UsuarioController>
-        public UsuarioController(IUsuarioService service)
+        public UsuarioController(IUsuarioService service, IMapper mapper)
         {
             _service = service;
-
+            _mapper = mapper;
         }
 
         [HttpGet]
+        [Authorize(Roles ="admin")]
         public async Task<IActionResult> UsuariosAsync()
         {
             try
@@ -35,12 +41,13 @@ namespace Condominio.WebApi.Controllers
             }
             catch (Exception e)
             {
-                return BadRequest(new RetornoViewModel { MsgRetorno = e.Message.ToString()});
+                return BadRequest(new RetornoViewModel { MsgRetorno = e.Message.ToString() });
             }
-            
+
         }
 
         [HttpGet("{id}")]
+        [AllowAnonymous]
         public async Task<IActionResult> Get(string id)
         {
             try
@@ -48,16 +55,21 @@ namespace Condominio.WebApi.Controllers
                 var retorno = await _service.LogarAsync(id);
                 if (retorno == null)
                     return BadRequest(new RetornoViewModel { MsgRetorno = "Nenhum registro encontrado", ErrosRetorno = new List<string> { "01" } });
-                return Ok(retorno);
+                var usuario = _mapper.Map<Usuarios>(retorno);
+                var token = JwtToken.GerarToken(usuario);
+                return Ok(new {
+                    retorno, token
+                });
             }
             catch (Exception e)
             {
-                return BadRequest(new RetornoViewModel { MsgRetorno = e.Message.ToString()});
+                return BadRequest(new RetornoViewModel { MsgRetorno = e.Message.ToString() });
             }
-            
+
         }
 
         [HttpPost]
+        [AllowAnonymous]
         public async Task<IActionResult> Post([FromBody] UsuarioViewModel usuario)
         {
             try
@@ -73,6 +85,7 @@ namespace Condominio.WebApi.Controllers
         }
 
         [HttpPut("{id}")]
+        [Authorize]
         public async Task<IActionResult> Put(string id, [FromBody] UsuarioViewModel value)
         {
             try
@@ -88,6 +101,7 @@ namespace Condominio.WebApi.Controllers
 
         // DELETE api/<UsuarioController>/5
         [HttpDelete("{id}")]
+        [Authorize(Roles = "admin")]
         public async Task <IActionResult>Delete(string id)
         {
             try
