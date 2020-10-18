@@ -11,5 +11,7 @@ namespace Condominio.Domain.Interfaces
          Task update(string id, T objeto);
          Task insert(T objeto);
          Task delete(string id);
+         
+
     }
 }

@@ -99,7 +99,7 @@ namespace Condominio.WebApi
                         
                 );
 
-                c.AddSecurityRequirement( new OpenApiSecurityRequirement
+                c.AddSecurityRequirement(new OpenApiSecurityRequirement
                 {
                   {
                     new OpenApiSecurityScheme

@@ -15,7 +15,7 @@ namespace Condominio.Domain.Entidades
             this.DataNascimento = dataNascimento;
             this.Telefone = telefone;
             this.Login  = login;       
-            Situacao = ESituacaoUsuario.pendente;
+            Situacao = ESituacaoUsuario.Pendente;
             AddNotifications(Login, new Contract().Requires()
              .IsNotNull(NumCasa, "NumCasa", "Número da casa não informado.")
              .IsNotNull(DataNascimento, "DataNascimento", "Data de nascimento não informado.")
@@ -31,7 +31,7 @@ namespace Condominio.Domain.Entidades
             this.DataNascimento = dataNascimento;
             this.Telefone = telefone;
             this.Login = login;
-            Situacao = ESituacaoUsuario.pendente;
+            Situacao = ESituacaoUsuario.Pendente;
             AddNotifications(Login, new Contract().Requires()
              .IsNotNull(NumCasa, "NumCasa", "Número da casa não informado.")
              .IsNotNull(DataNascimento, "DataNascimento", "Data de nascimento não informado.")
@@ -45,5 +45,10 @@ namespace Condominio.Domain.Entidades
         public int Telefone { get; private set; }
         public ESituacaoUsuario Situacao { get; private  set; }
         public LoginUsuario Login { get; private set; }
+
+        public void AlterarSituacao(ESituacaoUsuario situacao)
+        {
+            this.Situacao = situacao;
+        }
     }
 }

@@ -4,7 +4,6 @@ namespace Condominio.Aplication.ViewModels
     {
         public string email { get; set; }
         public string senha { get; set; }
-        public string pefil { get; set; }
 
     }
 }

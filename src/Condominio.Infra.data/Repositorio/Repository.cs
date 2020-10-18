@@ -11,11 +11,13 @@ namespace Condominio.Infra.data.Repositorio
     {
         private IMongoCollection<T> _db;
         private readonly DbContext _context;
+        public IMongoCollection<T> db;
 
         protected Repository(DbContext context)
         {
             _context = context;
             _db = _context.database.GetCollection<T>(typeof(T).Name);
+            db = _db;
         }
 
         public async Task<T> findById(string id)
