@@ -3,6 +3,7 @@ using Condominio.Aplication.AutoMappers;
 using Condominio.Aplication.Interfaces;
 using Condominio.Aplication.Services;
 using Condominio.Domain.Commands;
+using Condominio.Domain.Commands.Avisos;
 using Condominio.Domain.Commands.Usuario;
 using Condominio.Domain.Interfaces;
 using Condominio.Infra.data.ConfigurationDb;
@@ -44,6 +45,7 @@ namespace Condominio.WebApi
 
             //service
             services.AddScoped<IUsuarioService, UsuarioService>();
+            services.AddScoped<IAvisoService, AvisoService>();
 
             //repositório
             //services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
@@ -61,6 +63,11 @@ namespace Condominio.WebApi
             services.AddScoped<IRequestHandler<AvaliarUsuarioCommad, RetornoCommands>, UsuarioCommandHandler>();
             services.AddScoped<IRequestHandler<CriarUsuarioCommand, RetornoCommands>, UsuarioCommandHandler>();
             services.AddScoped<IRequestHandler<DeletarUsuarioCommand, RetornoCommands>, UsuarioCommandHandler>();
+
+            services.AddScoped<IRequestHandler<AlterarAvisoCommand, RetornoCommands>, AvisoCommandHandler>();
+            services.AddScoped<IRequestHandler<EnviarAvisoCommand, RetornoCommands>, AvisoCommandHandler>();
+            services.AddScoped<IRequestHandler<ExcluirAvisoCommand, RetornoCommands>, AvisoCommandHandler>();
+            services.AddScoped<IRequestHandler<IncluirAvisoCommand, RetornoCommands>, AvisoCommandHandler>();
             //Mongo
             services.Configure<ConfigurationDb>(Configuration.GetSection(nameof(ConfigurationDb)));
             services.AddSingleton<IConfigurationDb>( option => option.GetRequiredService<IOptions<ConfigurationDb>>().Value);

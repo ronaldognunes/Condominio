@@ -4,7 +4,7 @@ using Condominio.Infra.data.Contexto;
 
 namespace Condominio.Infra.data.Repositorio
 {
-    public class AvisoRepository : Repository<Avisos>, IAvisosRepository
+    public class AvisoRepository : Repository<Aviso>, IAvisosRepository
     {
         public AvisoRepository(DbContext context) :base(context)
         {

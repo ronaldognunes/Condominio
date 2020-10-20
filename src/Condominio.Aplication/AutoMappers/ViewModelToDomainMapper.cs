@@ -12,7 +12,7 @@ namespace Condominio.Aplication.AutoMappers
         {
             CreateMap<UsuarioViewModel,Usuarios>()
                 .ConstructUsing(c => new Usuarios(c.Id, c.Nome,c.NumCasa,c.DataNascimento,c.Telefone, new LoginUsuario(c.Perfil,c.Senha, new Email(c.Email))) );
-            CreateMap<AvisosViewModel,Avisos>();
+            CreateMap<AvisosViewModel,Aviso>();
             CreateMap<CondominioViewModel,CondominioEnd>();
             CreateMap<DespesaViewModel,Despesa>();
             CreateMap<DocumentoViewModel,Documento>();

@@ -6,9 +6,9 @@ using Condominio.Domain.objetosDeValor;
 
 namespace Condominio.Domain.Entidades
 {
-    public class Avisos: Entidade
+    public class Aviso: Entidade
     {
-        public Avisos(string tipo, string descricao, string situacao, DateTime dataGeracao, IReadOnlyCollection<Email> emails, DateTime? dataEnvio, IReadOnlyCollection<Documento> documentos)
+        public Aviso(string tipo, string descricao, string situacao, DateTime dataGeracao, DateTime? dataEnvio)
         {
             this.tipo = tipo;
             this.descricao = descricao;
