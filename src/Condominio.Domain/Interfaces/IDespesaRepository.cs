@@ -2,7 +2,7 @@ using Condominio.Domain.Entidades;
 
 namespace Condominio.Domain.Interfaces
 {
-    public interface IDespesaRepository:IRepository<Despesa>
+    public interface IDespesaRepository:IRepository<Despesas>
     {
          
     }

@@ -14,15 +14,15 @@ namespace Condominio.Aplication.AutoMappers
                 .ConstructUsing(c => new Usuarios(c.Id, c.Nome,c.NumCasa,c.DataNascimento,c.Telefone, new LoginUsuario(c.Perfil,c.Senha, new Email(c.Email))) );
             CreateMap<AvisosViewModel,Aviso>();
             CreateMap<CondominioViewModel,CondominioEnd>();
-            CreateMap<DespesaViewModel,Despesa>();
+            CreateMap<DespesaViewModel,Despesas>();
             CreateMap<DocumentoViewModel,Documento>();
             CreateMap<EnderecoViewModel,Endereco>();
             CreateMap<FornecedorViewModel,Fornecedor>();
             CreateMap<LoginViewModel,LoginUsuario>();
-            CreateMap<OcorrenciaViewModel,Ocorrencia>();
+            CreateMap<OcorrenciaViewModel,Ocorrencias>();
             CreateMap<OrdemServicoViewModel,OrdemDeServico>();
             CreateMap<PrestadorServicoViewModel,PrestadorServico>();
-            CreateMap<ReservaViewModel,Reserva>();
+            CreateMap<ReservaViewModel,Reservas>();
             CreateMap<UsuarioViewModel, AlterarUsuarioCommand>()
                 .ConvertUsing( c => new AlterarUsuarioCommand(c.Id,c.Nome,c.NumCasa,c.DataNascimento,c.Telefone,c.Perfil,c.Senha,c.Email,c.Situacao));
             CreateMap<UsuarioViewModel, AvaliarUsuarioCommad>()

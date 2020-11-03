@@ -29,7 +29,7 @@ namespace Condominio.WebApi.Controllers
         }
 
         [HttpGet]
-        [Authorize(Roles ="admin")]
+        [Authorize]
         public async Task<IActionResult> UsuariosAsync()
         {
             try

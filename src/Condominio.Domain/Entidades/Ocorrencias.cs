@@ -8,10 +8,10 @@ using Flunt.Validations;
 
 namespace Condominio.Domain.Entidades
 {
-    public class Ocorrencia : Entidade
+    public class Ocorrencias : Entidade
     {
         private IList<Documento> _documentos;
-        public Ocorrencia(string descricao, string titulo,  DateTime dataOcorrencia, int idUsuario , string nome)
+        public Ocorrencias(string descricao, string titulo,  DateTime dataOcorrencia, string idUsuario , string nome)
         {
             this.descricao = descricao;
             this.titulo = titulo;
@@ -28,7 +28,7 @@ namespace Condominio.Domain.Entidades
                 .IsNotNull(dataOcorrencia,"dataOcorrencia", "Data da ocorrência não informada")
             );
         }
-        public int idUsuario { get; set; }
+        public string idUsuario { get; set; }
         public string Nome { get; set; }
         public string descricao { get; private set; }
         public string titulo { get; private set; }

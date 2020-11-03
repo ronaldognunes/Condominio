@@ -3,9 +3,9 @@ using Condominio.Domain.Core.Entidades;
 
 namespace Condominio.Domain.Entidades
 {
-    public class Reserva : Entidade
+    public class Reservas : Entidade
     {
-        public Reserva(DateTime dataAgendamento, string nomeUsuario, int idUsuario)
+        public Reservas(DateTime dataAgendamento, string nomeUsuario, string idUsuario)
         {
             this.dataAgendamento = dataAgendamento;
             this.dataSolicitacao = DateTime.Now;
@@ -16,7 +16,7 @@ namespace Condominio.Domain.Entidades
         public DateTime dataAgendamento { get; private set; }
         public DateTime dataSolicitacao { get; private set; }
         public string nomeUsuario { get; private set; }
-        public int idUsuario { get; private set; }
+        public string idUsuario { get; private set; }
         
     }
 }

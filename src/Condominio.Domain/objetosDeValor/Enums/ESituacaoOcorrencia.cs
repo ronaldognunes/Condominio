@@ -4,7 +4,6 @@ namespace Condominio.Domain.objetosDeValor.Enums
     {
         aberta = 1,
         analise =2,
-        respondida=3
-        
+        respondida=3        
     }
 }

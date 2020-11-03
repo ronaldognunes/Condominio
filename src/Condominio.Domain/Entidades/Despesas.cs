@@ -3,9 +3,9 @@ using Condominio.Domain.objetosDeValor;
 
 namespace Condominio.Domain.Entidades
 {
-    public class Despesa : Entidade
+    public class Despesas : Entidade
     {
-        public Despesa(string nome, decimal valTotal, string descricao, Fornecedor fornecedor)
+        public Despesas(string nome, decimal valTotal, string descricao, Fornecedor fornecedor)
         {
             this.nome = nome;
             this.valTotal = valTotal;

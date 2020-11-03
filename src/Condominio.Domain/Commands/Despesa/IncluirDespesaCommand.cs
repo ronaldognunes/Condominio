@@ -7,5 +7,6 @@ namespace Condominio.Domain.Commands.Despesa
 {
     public class IncluirDespesaCommand : DespesaCommand, IRequest<RetornoCommands>
     {
+
     }
 }

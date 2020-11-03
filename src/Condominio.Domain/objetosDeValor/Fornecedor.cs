@@ -5,7 +5,7 @@ namespace Condominio.Domain.objetosDeValor
 {
     public class Fornecedor:ObjetoDeValor
     {
-        public Fornecedor(string nome, int telefone, string cpf, string cnpj)
+        public Fornecedor(string nome, string telefone, string cpf, string cnpj)
         {
             this.nome = nome;
             this.telefone = telefone;
@@ -16,7 +16,7 @@ namespace Condominio.Domain.objetosDeValor
         }
 
         public string nome { get; private set; }
-        public int telefone { get; private set; }
+        public string telefone { get; private set; }
         public string cpf { get; private set; }
         public string cnpj { get; private set; }
     }

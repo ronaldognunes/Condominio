@@ -7,5 +7,9 @@ namespace Condominio.Domain.Commands.Condominio
 {
     public class ExcluirCondominioCommand: CondominioCommand, IRequest<RetornoCommands>
     {
+        public ExcluirCondominioCommand( string id)
+        {
+            this.id = id;
+        }
     }
 }
